@@ -197,6 +197,78 @@
             opacity: 1;
         }
 
+        /* Estilos flechas slider */
+        .slider-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 40;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .hero-slider-container:hover .slider-nav-btn {
+            opacity: 1;
+        }
+
+        .slider-nav-btn:hover {
+            background: var(--brand-emerald);
+            color: #020617;
+            transform: translateY(-50%) scale(1.1);
+            border-color: transparent;
+        }
+
+        .slider-nav-btn.prev { left: 16px; }
+        .slider-nav-btn.next { right: 16px; }
+
+        /* Estilos Comparativa Antes/Después */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+            .compare-divider {
+                display: none;
+            }
+        }
+
+        .vs-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 12px;
+            color: #64748b;
+            z-index: 10;
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
@@ -253,7 +325,7 @@
 
             <div class="lg:col-span-7 reveal flex justify-center lg:justify-end items-stretch gap-2">
                 <!-- Video del Avatar -->
-                <div class="video-container w-[260px] h-[560px] md:w-[320px] md:h-[670px] border-emerald-500/30 shadow-2xl relative bg-slate-900 group">
+                <div class="video-container w-[260px] h-[560px] md:w-[320px] md:h-[550px] border-emerald-500/30 shadow-2xl relative bg-slate-900 group">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent z-10"></div>
                     
                     <video id="hero-video" class="avatar-video" autoplay loop muted playsinline oncanplay="this.classList.add('loaded')">
@@ -271,18 +343,29 @@
                     </div>
                 </div>
 
-                <!-- Slider Lateral -->
-                <div class="hero-slider-container w-[450px] h-[560px] md:w-[550px] md:h-[670px] relative hidden sm:block">
+                <!-- Slider Lateral Modificado -->
+                <div class="hero-slider-container w-[450px] h-[560px] md:w-[550px] md:h-[550px] relative hidden sm:block group/slider">
+                    <!-- 8 Imágenes -->
                     <div class="hero-slide active" style="background-image: url('i1.png')"></div>
                     <div class="hero-slide" style="background-image: url('i2.png')"></div>
                     <div class="hero-slide" style="background-image: url('i3.png')"></div>
                     <div class="hero-slide" style="background-image: url('i4.png')"></div>
                     <div class="hero-slide" style="background-image: url('i5.png')"></div>
                     <div class="hero-slide" style="background-image: url('i6.png')"></div>
+                    <div class="hero-slide" style="background-image: url('i7.png')"></div>
+                    <div class="hero-slide" style="background-image: url('i8.png')"></div>
                     
+                    <!-- Flechas de navegación -->
+                    <button class="slider-nav-btn prev" onclick="manualNav(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-nav-btn next" onclick="manualNav(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
                     <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-slate-950/90 to-transparent z-20">
                         <p class="text-emerald-500 font-black text-[10px] tracking-widest uppercase mb-1">Ecosistema Digital</p>
-                        <h4 class="text-white font-bold text-sm leading-tight uppercase">Visualización de Operaciones en Tiempo Real</h4>
+                        <h4 class="text-white font-bold text-sm leading-tight uppercase" id="slider-caption">Visualización de Operaciones en Tiempo Real</h4>
                     </div>
                 </div>
             </div>
@@ -326,19 +409,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="glass-card p-8 rounded-3xl text-center flex flex-col justify-center items-center">
-                        <i class="fas fa-pen-nib text-3xl text-red-500 mb-4 opacity-40"></i>
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Estatus Antiguo: Caos Operativo</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-3xl text-center border-emerald-500/30 flex flex-col justify-center items-center">
-                        <i class="fas fa-shopping-bag text-3xl text-emerald-500 mb-4"></i>
-                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400">RutaTotal 360: Eficiencia Total</p>
+                <div class="grid grid-cols-1 gap-4">
+                    <div id="ruta-total-video" class="glass-card p-8 rounded-3xl text-center flex flex-col justify-center items-center">
+                     
+                             <video controls src="11.mp4" width="100%"></video>
+                        <!-- Ejemplo de inserción:
+                             <iframe src="https://www.youtube.com/embed/VIDEO_ID" width="100%" height="200" frameborder="0" allowfullscreen></iframe>
+                             o
+                             <video controls src="ruta_del_video.mp4" width="100%"></video>
+                        -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Comparativa eliminada por solicitud del usuario -->
 
     <!-- Órbita: Visión Global -->
     <section id="packages-section" class="py-24 relative overflow-hidden">
@@ -459,18 +545,35 @@
     </footer>
 
     <script>
+        // Variables globales para el slider
+        let currentHeroSlide = 0;
+        let heroSliderInterval;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+
         function initHeroSlider() {
-            const slides = document.querySelectorAll('.hero-slide');
-            let currentSlide = 0;
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 3000); 
+            startSlider();
             
             const heroVideo = document.getElementById('hero-video');
             heroVideo.muted = true;
             heroVideo.volume = 0;
+        }
+
+        function startSlider() {
+            clearInterval(heroSliderInterval);
+            heroSliderInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000); 
+        }
+
+        function changeSlide(direction) {
+            heroSlides[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = (currentHeroSlide + direction + heroSlides.length) % heroSlides.length;
+            heroSlides[currentHeroSlide].classList.add('active');
+        }
+
+        function manualNav(direction) {
+            changeSlide(direction);
+            startSlider(); // Reiniciar el contador para que no salte inmediatamente después de hacer click
         }
 
         function togglePlay(id, btn) {
@@ -564,7 +667,6 @@
             if (videoElem.src.indexOf(data.video) === -1) {
                 videoElem.classList.remove('loaded');
                 videoElem.src = data.video;
-                // Al cambiar de paquete, solo reproducimos si la sección es visible
                 const section = document.getElementById('packages-section');
                 const rect = section.getBoundingClientRect();
                 if (rect.top < window.innerHeight && rect.bottom >= 0) {
@@ -579,7 +681,7 @@
             const dynamicVideo = document.getElementById('dynamic-avatar-video');
 
             const observerOptions = {
-                threshold: 0.1 // 10% de visibilidad mínimo
+                threshold: 0.1
             };
 
             const videoObserver = new IntersectionObserver((entries) => {
@@ -588,15 +690,10 @@
                     const btn = video.closest('.video-container').querySelector('.control-btn i');
                     
                     if (!entry.isIntersecting) {
-                        // Si el video sale de vista, pausar
                         if (!video.paused) {
                             video.pause();
                             if (btn) btn.className = 'fas fa-play';
                         }
-                    } else {
-                        // Si vuelve a vista, opcionalmente podrías darle play, 
-                        // pero por UX es mejor dejarlo pausado si el usuario lo pausó.
-                        // Solo garantizamos que el autoplay (muted) se mantenga si aplica.
                     }
                 });
             }, observerOptions);
@@ -609,7 +706,7 @@
             initParticles('orbita-particles', '#8b5cf6');
             initParticles('orbita-particles-sec', '#a855f7');
             initHeroSlider();
-            initVideoObservers(); // Iniciar observadores de video
+            initVideoObservers();
 
             const dynamicVideo = document.getElementById('dynamic-avatar-video');
             dynamicVideo.muted = true;
