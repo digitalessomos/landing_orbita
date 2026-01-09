@@ -368,7 +368,7 @@
             </div>
 
             <div class="grid lg:grid-cols-12 gap-12 items-start">
-                <div class="lg:col-span-6 grid md:grid-cols-2 gap-6">
+                <div class="lg:col-span-4 flex flex-col space-y-8">
                     <!-- Fase 01 -->
                     <div class="reveal package-card glass-card p-8 rounded-[2rem] active-rt" onclick="switchPackage(1, this)">
                         <div class="flex justify-between items-start mb-6">
@@ -398,7 +398,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 lg:sticky lg:top-32">
+                <div class="lg:col-span-8 lg:sticky lg:top-32">
                     <div id="video-wrapper" class="w-full max-w-[820px] mx-auto flex flex-col md:flex-row items-start gap-2">
                         <div class="video-container w-full max-w-[320px] h-[570px] border-emerald-500/30 transition-all duration-500 bg-slate-900 group">
                             <video id="dynamic-avatar-video" class="avatar-video" autoplay loop muted playsinline oncanplay="this.classList.add('loaded')">
@@ -416,7 +416,7 @@
                         <div class="flex-1 flex flex-col items-center md:items-stretch">
                             <div class="flex gap-4 justify-center md:justify-end">
                                 <!-- Slider para Fase 01 -->
-                                <div class="package-slider hero-slider-container w-[320px] h-[530px] md:w-[420px] md:h-[570px] relative" data-package="1">
+                                <div class="package-slider hero-slider-container w-[320px] h-[530px] md:w-[520px] md:h-[570px] relative" data-package="1">
                                     
                                              <div class="package-slide hero-slide active" style="background-image: url('sliderfases/q1.png')"></div>
                                     <div class="package-slide hero-slide" style="background-image: url('sliderfases/q22.png')"></div>
@@ -432,7 +432,7 @@
                                     </div>
 
                                 <!-- Slider para Fase 02 (oculto inicialmente) -->
-                                <div class="package-slider hero-slider-container w-[320px] h-[530px] md:w-[420px] md:h-[570px] relative hidden" data-package="2">
+                                <div class="package-slider hero-slider-container w-[320px] h-[530px] md:w-[520px] md:h-[570px] relative hidden" data-package="2">
                                
                                  <div class="package-slide hero-slide active" style="background-image: url('sliderfases/1.PNG')"></div>
                                                
