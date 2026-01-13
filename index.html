@@ -139,6 +139,9 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .package-card:hover {
@@ -164,6 +167,43 @@
         }
 
         .avatar-video.loaded { opacity: 1; }
+
+        /* Estilos rediseñados para la sección de transformación */
+        .transformation-video-wrapper {
+            display: flex;
+            gap: 20px;
+            align-items: stretch; /* Esto iguala las alturas de los hijos */
+        }
+
+        .transformation-avatar-box {
+            flex: 0 0 280px;
+            height: 500px;
+        }
+
+        .transformation-display-box {
+            flex: 1;
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            
+        }
+
+        .package-video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* llena el contenedor sin barras negras */
+            object-position: center center; /* centra el encuadre */
+            background: #000;
+            border-radius: 12px;
+            transition: opacity 0.5s ease;
+            
+        }
 
         .slider-nav-btn {
             position: absolute;
@@ -344,7 +384,7 @@
                 </div>
                 <div class="reveal">
                     <div class="glass-card p-4 rounded-3xl border-emerald-500/20 shadow-2xl">
-                         <video id="scroll-video-1" controls src="p1.mp4" class="w-full rounded-2xl scroll-video"></video>
+                         <video id="scroll-video-1" controls src="S2B.mp4" class="w-full rounded-2xl scroll-video"></video>
                          <div class="p-6">
                              <p class="text-emerald-500 font-black text-[11px] uppercase tracking-widest mb-2">Fortaleza Principal</p>
                              <h3 class="text-xl font-bold">Interfaz Limpia. Operativa Fluida.</h3>
@@ -356,7 +396,7 @@
         </div>
     </section>
 
-    <!-- Fases de Implementación -->
+    <!-- Fases de Implementación - REDISEÑO POTENTE -->
     <section class="py-24 relative overflow-hidden bg-slate-900/50">
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-4xl mb-16">
@@ -364,14 +404,15 @@
                     Fases de Lanzamiento
                 </div>
                 <h2 class="text-4xl md:text-6xl font-black mb-4 italic tracking-tighter">TRANSFORMACIÓN DIGITAL</h2>
-                <p class="text-slate-400 text-xl">Integramos tecnología que entiende tu negocio logístico. </p>
+                <p class="text-slate-400 text-xl">Tecnología que sincroniza tu logística con la realidad de tu negocio.</p>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-12 items-start">
-                <div class="lg:col-span-4 flex flex-col space-y-8">
+            <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+                <!-- Columna de Tarjetas -->
+                <div class="lg:col-span-4 flex flex-col gap-6">
                     <!-- Fase 01 -->
-                    <div class="reveal package-card glass-card p-8 rounded-[2rem] active-rt" onclick="switchPackage(1, this)">
-                        <div class="flex justify-between items-start mb-6">
+                    <div class="reveal package-card glass-card p-8 rounded-[2rem] active-rt flex-1" onclick="switchPackage(1, this)">
+                        <div class="flex justify-between items-start mb-4">
                             <div class="px-3 py-1 rounded-md badge-rt text-[8px] font-black uppercase tracking-tighter">Fase 01</div>
                             <span class="text-slate-500 font-mono text-[10px]">ORGANIZACIÓN</span>
                         </div>
@@ -384,8 +425,8 @@
                     </div>
 
                     <!-- Fase 02 -->
-                    <div class="reveal package-card glass-card p-8 rounded-[2rem]" onclick="switchPackage(2, this)">
-                        <div class="flex justify-between items-start mb-6">
+                    <div class="reveal package-card glass-card p-8 rounded-[2rem] flex-1" onclick="switchPackage(2, this)">
+                        <div class="flex justify-between items-start mb-4">
                             <div class="px-3 py-1 rounded-md badge-rt text-[8px] font-black uppercase tracking-tighter">Fase 02</div>
                             <span class="text-slate-500 font-mono text-[10px]">CONECTIVIDAD</span>
                         </div>
@@ -398,9 +439,11 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-8 lg:sticky lg:top-32">
-                    <div id="video-wrapper" class="w-full max-w-[820px] mx-auto flex flex-col md:flex-row items-start gap-2">
-                        <div class="video-container w-full max-w-[320px] h-[570px] border-emerald-500/30 transition-all duration-500 bg-slate-900 group">
+                <!-- Columna de Videos Alineada -->
+                <div class="lg:col-span-8">
+                    <div class="transformation-video-wrapper">
+                        <!-- Video Avatar -->
+                        <div class="video-container transformation-avatar-box border-emerald-500/20 bg-slate-900 group">
                             <video id="dynamic-avatar-video" class="avatar-video" autoplay loop muted playsinline oncanplay="this.classList.add('loaded')">
                                 <source src="1.mp4" type="video/mp4">
                             </video>
@@ -413,50 +456,28 @@
                             </div>
                         </div>
 
-                        <div class="flex-1 flex flex-col items-center md:items-stretch">
-                            <div class="flex gap-4 justify-center md:justify-end">
-                                <!-- Slider para Fase 01 -->
-                                <div class="package-slider hero-slider-container w-[320px] h-[530px] md:w-[520px] md:h-[570px] relative" data-package="1">
-                                    
-                                             <div class="package-slide hero-slide active" style="background-image: url('sliderfases/q1.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q22.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q3.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q4.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q5.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q6.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q7.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q8.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q9.png')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/q10.png')"></div>
-                                     <div class="package-slide hero-slide" style="background-image: url('sliderfases/q11.png')"></div> 
-                                    </div>
+                        <!-- Video Display (Dashboard) -->
+                        <div class="transformation-display-box group">
+                            <div class="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            
+                            <!-- Video Fase 1 -->
+                            <video id="package-video-1" class="package-video" data-package="1" autoplay loop muted playsinline>
+                                <source src="capcut.mp4" type="video/mp4">
+                            </video>
 
-                                <!-- Slider para Fase 02 (oculto inicialmente) -->
-                                <div class="package-slider hero-slider-container w-[320px] h-[530px] md:w-[520px] md:h-[570px] relative hidden" data-package="2">
-                               
-                                 <div class="package-slide hero-slide active" style="background-image: url('sliderfases/1.PNG')"></div>
-                                               
-                                 
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/11.PNG')"></div>
-                                       <div class="package-slide hero-slide " style="background-image: url('sliderfases/10.PNG')"></div>
-                                       <div class="package-slide hero-slide" style="background-image: url('sliderfases/9.PNG')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/2.PNG')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/3.PNG')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/4.PNG')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/5.PNG')"></div>
-                                    <div class="package-slide hero-slide " style="background-image: url('sliderfases/6.PNG')"></div>
-                                    <div class="package-slide hero-slide" style="background-image: url('sliderfases/7.PNG')"></div>
-                                         <div class="package-slide hero-slide" style="background-image: url('sliderfases/8.PNG')"></div>
-                      
-                             
+                            <!-- Video Fase 2 -->
+                            <video id="package-video-2" class="package-video hidden" data-package="2" autoplay loop muted playsinline>
+                                <source src="capcut2.mp4" type="video/mp4">
+                            </video>
+
+                            <div class="absolute bottom-4 left-0 right-0 px-6 flex justify-between items-end z-10">
+                                <div>
+                                    <h5 class="text-white font-black uppercase text-xs tracking-widest" id="current-status-name">Fase 01: Organización</h5>
+                                    <p class="text-slate-400 text-[9px] uppercase tracking-[0.2em] italic">Visualización Directa en Local</p>
                                 </div>
+                                <i class="fas fa-expand-alt text-emerald-500/50 text-xs"></i>
                             </div>
-                            <p class="text-slate-500 text-[10px] uppercase tracking-[0.3em] mt-3 italic text-center md:text-right">Imágenes del paquete seleccionado</p>
                         </div>
-                    </div>
-                    <div class="mt-6 text-center">
-                        <h5 class="text-white font-black uppercase text-sm tracking-widest" id="current-status-name">Fase 01: Organización</h5>
-                        <p class="text-slate-500 text-[10px] uppercase tracking-[0.3em] mt-1 italic">Visualización Directa en Local</p>
                     </div>
                 </div>
             </div>
@@ -611,62 +632,12 @@
                 videoElem.play().catch(() => {});
             }
 
-            document.querySelectorAll('.package-slider').forEach(s => s.classList.add('hidden'));
-            const activeSlider = document.querySelector(`.package-slider[data-package="${id}"]`);
-            if (activeSlider) activeSlider.classList.remove('hidden');
-        }
-
-        const sliderIntervals = new Map();
-        const sliderCurrents = new Map();
-
-        function startPackageSlider(slider) {
-            const slides = slider.querySelectorAll('.package-slide');
-            if (!slides.length) return;
-            const id = slider.getAttribute('data-package') || String(Math.random());
-            // Ensure previous interval cleared
-            stopPackageSlider(slider);
-            // Reset to first slide
-            sliderCurrents.set(id, 0);
-            slides.forEach((s, i) => s.classList.toggle('active', i === 0));
-            const intervalId = setInterval(() => {
-                let current = sliderCurrents.get(id) || 0;
-                slides[current].classList.remove('active');
-                current = (current + 1) % slides.length;
-                slides[current].classList.add('active');
-                sliderCurrents.set(id, current);
-            }, 3000);
-            sliderIntervals.set(id, intervalId);
-        }
-
-        function stopPackageSlider(slider) {
-            const id = slider.getAttribute('data-package') || String(Math.random());
-            const intervalId = sliderIntervals.get(id);
-            if (intervalId) {
-                clearInterval(intervalId);
-                sliderIntervals.delete(id);
+            document.querySelectorAll('.package-video').forEach(v => { v.classList.add('hidden'); try { v.pause(); } catch(e){} });
+            const activeVideo = document.querySelector(`.package-video[data-package="${id}"]`);
+            if (activeVideo) {
+                activeVideo.classList.remove('hidden');
+                try { activeVideo.currentTime = 0; activeVideo.play().catch(()=>{}); } catch(e) {}
             }
-        }
-
-        const packageSliderObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const slider = entry.target;
-                if (entry.isIntersecting) {
-                    startPackageSlider(slider);
-                } else {
-                    stopPackageSlider(slider);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        function initPackageSliders() {
-            const sliders = document.querySelectorAll('.package-slider');
-            sliders.forEach(slider => {
-                const slides = slider.querySelectorAll('.package-slide');
-                if (!slides.length) return;
-                // Ensure first slide is set but don't start interval here; observer will start when visible
-                slides.forEach((s, i) => s.classList.toggle('active', i === 0));
-                packageSliderObserver.observe(slider);
-            });
         }
 
         // --- LÓGICA DE CONTROL DE VIDEOS POR SCROLL Y REINICIO ---
@@ -674,11 +645,9 @@
             entries.forEach(entry => {
                 const video = entry.target;
                 if (entry.isIntersecting) {
-                    // El video entra en pantalla: reiniciar a tiempo 0 y reproducir
                     video.currentTime = 0;
                     video.play().catch(() => {});
                 } else {
-                    // El video sale de pantalla: pausar
                     video.pause();
                 }
             });
@@ -690,12 +659,8 @@
 
         window.onload = function() {
             initHeroSlider();
-            initPackageSliders();
             
-            // Observar elementos para efectos de revelación
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            
-            // Observar todos los videos para pausarlos/reproducirlos y REINICIARLOS según el scroll
             document.querySelectorAll('video').forEach(v => videoScrollObserver.observe(v));
 
             const dynamicVideo = document.getElementById('dynamic-avatar-video');
