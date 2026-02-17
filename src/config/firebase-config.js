@@ -1,8 +1,9 @@
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyDfZvwhzUE3Qy1Luoyb5PPaNwM5D2MniiA",
-    authDomain: "monitordepedidos-2b20b.firebaseapp.com",
-    projectId: "monitordepedidos-2b20b",
-    storageBucket: "monitordepedidos-2b20b.firebasestorage.app",
-    messagingSenderId: "544194700696",
-    appId: "1:544194700696:web:29f2e1c289ed1806a577ed"
+      apiKey: "AIzaSyAZB3RtpYVjrCQzPzRD4JgCBnSuJ7UqOjM",
+  authDomain: "orbita-fase3.firebaseapp.com",
+  projectId: "orbita-fase3",
+  storageBucket: "orbita-fase3.firebasestorage.app",
+  messagingSenderId: "986330027557",
+  appId: "1:986330027557:web:5f3e215efc3d27371b11cc",
+  measurementId: "G-F2TTR09P4L"
 };
