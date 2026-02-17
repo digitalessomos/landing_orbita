@@ -754,6 +754,33 @@
                 display: none;
             }
         }
+        .orbit-feature-card {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 3px solid transparent;
+        }
+
+        .orbit-feature-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-left-color: rgba(16, 185, 129, 0.3);
+            transform: translateX(5px);
+        }
+
+        .orbit-feature-card.active {
+            background: rgba(16, 185, 129, 0.08);
+            border-left-color: var(--brand-emerald);
+            box-shadow: -15px 0 30px -15px rgba(16, 185, 129, 0.3);
+            transform: translateX(8px);
+        }
+
+        .video-swap-animation {
+            animation: videoFade 0.5s ease-in-out;
+        }
+
+        @keyframes videoFade {
+            0% { opacity: 0; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 
@@ -914,23 +941,23 @@
                         <h2 class="text-4xl font-black italic tracking-tighter">CONSOLA DE CONTROL</h2>
                     </div>
 
-                    <div class="space-y-10">
-                        <div
-                            class="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-colors border-l-2 border-emerald-500/30">
+                    <div class="space-y-6">
+                        <div onclick="switchOrbitFeature(1, this)"
+                            class="orbit-feature-card active p-6 rounded-2xl">
                             <div>
                                 <h4 class="font-bold text-white uppercase text-sm tracking-wider mb-2">Cero Fricción WhatsApp/Cliente</h4>
                                 <p class="text-slate-400 text-sm">Eliminamos el ping-pong telefónico. El repartidor dispara acciones directas y el sistema informa al cliente al vuelo. Soprendente velocidad de respuesta sin una sola palabra de más.</p>
                             </div>
                         </div>
-                        <div
-                            class="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-colors border-l-2 border-slate-700">
+                        <div onclick="switchOrbitFeature(2, this)"
+                            class="orbit-feature-card p-6 rounded-2xl">
                             <div>
                                 <h4 class="font-bold text-white uppercase text-sm tracking-wider mb-2">Liquidación Soberana (Triple Vía)</h4>
                                 <p class="text-slate-400 text-sm">El repartidor marca "Entregado" en la calle o al regresar. Si se olvida, lo liquidás vos desde el monitor. Si sale de la pantalla, es que el pedido se cobró y el ciclo cerró.</p>
                             </div>
                         </div>
-                        <div
-                            class="flex items-start gap-4 p-4 rounded-2xl hover:bg-white/5 transition-colors border-l-2 border-slate-700">
+                        <div onclick="switchOrbitFeature(3, this)"
+                            class="orbit-feature-card p-6 rounded-2xl">
                             <div>
                                 <h4 class="font-bold text-white uppercase text-sm tracking-wider mb-2">Multi-Atención Dinámica</h4>
                                 <p class="text-slate-400 text-sm">Inimaginable antes de Órbita. Gestioná estados masivos "En Viaje" con visión de radar. Etiquetas de acción directa para contratiempos previstos (timbre roto, no atiende) al instante.</p>
@@ -939,15 +966,16 @@
                     </div>
                 </div>
                 <div class="reveal">
-                    <div class="glass-card p-4 rounded-3xl border-emerald-500/20 shadow-2xl">
-                        <video id="scroll-video-1" controls src="videos/S2B.mp4"
-                            class="w-full rounded-2xl scroll-video"></video>
+                    <div class="glass-card p-4 rounded-3xl border-emerald-500/20 shadow-2xl relative overflow-hidden">
+                        <div id="video-overlay-text" class="absolute top-8 left-8 z-10 opacity-0 transition-opacity duration-500">
+                            <span class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Vista Órbita</span>
+                        </div>
+                        <video id="feature-display-video" controls src="videos/S2B.mp4"
+                            class="w-full rounded-2xl shadow-inner bg-slate-900"></video>
                         <div class="p-6">
-                            <p class="text-emerald-500 font-black text-[11px] uppercase tracking-widest mb-2">Fortaleza
-                                Principal</p>
-                            <h3 class="text-xl font-bold">Interfaz Limpia. Operativa Fluida.</h3>
-                            <p class="text-slate-400 text-sm mt-2">Diseñada para evitar distracciones y priorizar la
-                                información que el despachador necesita ver de un solo vistazo.</p>
+                            <p class="text-emerald-500 font-black text-[11px] uppercase tracking-widest mb-2" id="feature-tag">Soberanía Logística</p>
+                            <h3 class="text-xl font-bold" id="feature-title">Acción en Tiempo Real</h3>
+                            <p class="text-slate-400 text-sm mt-2" id="feature-desc">Presencia visual absoluta. Si está en la pantalla, es la verdad operativa de tu local.</p>
                         </div>
                     </div>
                 </div>
@@ -1089,32 +1117,49 @@
             video.muted = (val == 0);
         }
 
-        const packageData = {
-            1: { brand: "Fase 01: Organización", subtitle: "Consola de Control Local Proactiva", video: "videos/1.mp4" },
-            2: { brand: "Fase 02: Conectividad", subtitle: "Sincronización en la Nube", video: "videos/2.mp4" }
+        const orbitFeatures = {
+            1: {
+                tag: "Cero Fricción",
+                title: "Local - Repartidor - Cliente",
+                desc: "Contraste radical: Lo que antes eran 3 minutos de llamadas y audios, ahora es una acción de 1 segundo que notifica a todos.",
+                video: "videos/n2.mp4"
+            },
+            2: {
+                tag: "Triple Validación",
+                title: "Liquidación Soberana",
+                desc: "Seguridad total: El sistema cierra el ciclo de venta sin importar quién marque el entregado. Auditoría impecable.",
+                video: "videos/Capcut2.mov"
+            },
+            3: {
+                tag: "Multi-Atención",
+                title: "Visión de Radar",
+                desc: "Gestión masiva: Un solo operador dominando 20 entregas simultáneas con etiquetas de respuesta automática.",
+                video: "videos/monitor.MOV"
+            }
         };
 
-        function switchPackage(id, element) {
-            document.querySelectorAll('.package-card').forEach(card => card.classList.remove('active-rt'));
-            element.classList.add('active-rt');
+        function switchOrbitFeature(id, element) {
+            // UI Update
+            document.querySelectorAll('.orbit-feature-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
 
-            const data = packageData[id];
-            document.getElementById('current-status-name').innerText = data.brand;
-            document.querySelector('#current-status-name + p').innerText = data.subtitle;
+            const data = orbitFeatures[id];
+            
+            // Text Update
+            document.getElementById('feature-tag').innerText = data.tag;
+            document.getElementById('feature-title').innerText = data.title;
+            document.getElementById('feature-desc').innerText = data.desc;
 
-            const videoElem = document.getElementById('dynamic-avatar-video');
-            if (videoElem.src.indexOf(data.video) === -1) {
-                videoElem.classList.remove('loaded');
-                videoElem.src = data.video;
-                videoElem.play().catch(() => { });
-            }
+            // Video Update with animation
+            const video = document.getElementById('feature-display-video');
+            video.classList.remove('video-swap-animation');
+            void video.offsetWidth; // Force reflow
+            video.classList.add('video-swap-animation');
 
-            document.querySelectorAll('.package-video').forEach(v => { v.classList.add('hidden'); try { v.pause(); } catch (e) { } });
-            const activeVideo = document.querySelector(`.package-video[data-package="${id}"]`);
-            if (activeVideo) {
-                activeVideo.classList.remove('hidden');
-                try { activeVideo.currentTime = 0; activeVideo.play().catch(() => { }); } catch (e) { }
-            }
+            video.src = data.video;
+            video.play().catch(() => {});
+            
+            document.getElementById('video-overlay-text').classList.add('opacity-100');
         }
 
         // --- LÓGICA DE CONTROL DE VIDEOS POR SCROLL Y REINICIO ---
