@@ -24,12 +24,14 @@
         .gradient-rt {
             background: linear-gradient(135deg, var(--brand-emerald), #34d399);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .logo-icon {
             background: linear-gradient(135deg, var(--brand-emerald), #059669);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
         }
@@ -113,6 +115,7 @@
 
         .volume-slider {
             -webkit-appearance: none;
+            appearance: none;
             width: 70px;
             height: 4px;
             background: rgba(255, 255, 255, 0.2);
@@ -711,7 +714,8 @@
         }
 
         .modal-body {
-            /* padding: 0;  Slider takes full width or maybe some padding */
+            position: relative;
+            flex: 1;
         }
 
         .modal-footer {
@@ -841,14 +845,13 @@
         <div class="relative z-10 grid lg:grid-cols-10 gap-6 items-center max-w-[1300px] mx-auto w-full">
             <div class="lg:col-span-3 text-left reveal">
                 <div class="title-container">
-                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-[1.1] tracking-tight relative z-10">
-                         ¿10 PEDIDOS EN VIAJE? <span
-                            class="text-emerald-500/90 underline decoration-emerald-900/50 decoration-4 underline-offset-4">MANÉJALOS COMO SI FUERA UNO SOLO</span>
+                    <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-[1.1] tracking-tighter relative z-10 uppercase italic">
+                         ¿Cansado de <span class="text-emerald-500">perder ventas</span> por el caos de WhatsApp?
                     </h1>
                 </div>
-                <p class="text-xl text-slate-400 mb-8 max-w-md leading-relaxed">
-                   Órbita liquida el teléfono descompuesto y te da el mando total de tus repartidores en tiempo real. <span
-                        class="text-emerald-400 font-bold"> Control Total al Vuelo.</span>
+                <p class="text-xl text-slate-400 mb-8 max-w-xl leading-relaxed">
+                    Lo que antes tomaba 5 minutos de mensajes y esperas, ahora se resuelve en <span class="text-emerald-400 font-bold">3 segundos</span>. 
+                    Elimina el teléfono descompuesto y recupera <span class="text-white font-bold">1 hora de ventas</span> en cada turno.
                 </p>
                 <div class="space-y-4">
                     <div
@@ -868,51 +871,35 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-7 reveal flex justify-center lg:justify-end items-stretch gap-2">
+            <div class="lg:col-span-7 reveal flex justify-center lg:justify-end items-center">
+                <!-- Único Contenedor de Video Centralizado -->
                 <div
-                    class="video-container w-[260px] h-[560px] md:w-[320px] md:h-[550px] border-emerald-500/30 shadow-2xl relative bg-slate-900 group">
-                    <video id="hero-video" class="avatar-video" autoplay loop muted playsinline
-                        oncanplay="this.classList.add('loaded')">
-                        <source src="videos/0.mp4" type="video/mp4">
+                    class="video-container w-full max-w-[800px] aspect-video border-emerald-500/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] relative bg-slate-900 group">
+                    <video id="hero-central-video" class="w-full h-full object-cover" autoplay loop muted playsinline>
+                        <source src="videos/transformation_fase3.mp4" type="video/mp4">
                     </video>
-                    <div class="video-controls">
-                        <button class="control-btn" onclick="togglePlay('hero-video', this)"><i
+                    
+                    <!-- Overlay de "Antes/Después" sugerido para el video -->
+                    <div class="absolute top-4 left-4 z-20 flex gap-2">
+                        <span class="bg-red-500/80 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">Realidad Frustrante</span>
+                        <i class="fas fa-arrow-right text-emerald-400 self-center animate-pulse"></i>
+                        <span class="bg-emerald-500/80 backdrop-blur-md text-slate-950 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-400/30">Paz Operativa</span>
+                    </div>
+
+                    <div class="video-controls group-hover:opacity-100 opacity-0 transition-opacity">
+                        <button class="control-btn" onclick="togglePlay('hero-central-video', this)"><i
                                 class="fas fa-pause"></i></button>
                         <div class="flex items-center gap-2">
                             <i class="fas fa-volume-up text-[10px] text-emerald-500"></i>
                             <input type="range" class="volume-slider" min="0" max="1" step="0.1" value="0"
-                                oninput="setVolume('hero-video', this.value)">
+                                oninput="setVolume('hero-central-video', this.value)">
                         </div>
                     </div>
-                </div>
 
-                <div
-                    class="hero-slider-container w-[450px] h-[560px] md:w-[550px] md:h-[550px] relative hidden sm:block group/slider">
-                    <div class="hero-slide active" style="background-image: url('img/heroimg/i1.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i2.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i3.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i4.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i5.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i6.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i7.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i8.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i9.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i10.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i11.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i12.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i13.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i14.webp')"></div>
-                    <div class="hero-slide" style="background-image: url('img/heroimg/i15.webp')"></div>
-                    <button class="slider-nav-btn prev" onclick="manualNav(-1)"><i
-                            class="fas fa-chevron-left"></i></button>
-                    <button class="slider-nav-btn next" onclick="manualNav(1)"><i
-                            class="fas fa-chevron-right"></i></button>
-                    <div
-                        class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-slate-950/90 to-transparent z-20 text-right">
-                        <p class="text-emerald-500 font-black text-[10px] tracking-widest uppercase mb-1">Control de
-                            Monitoreo</p>
-                        <h4 class="text-white font-bold text-sm leading-tight uppercase">Dashboard Proactivo en Pantalla
-                        </h4>
+                    <!-- Indicador de Control Multi-pedidos -->
+                    <div class="absolute bottom-4 right-4 z-20 bg-slate-950/80 backdrop-blur-md p-3 border border-emerald-500/20 rounded-xl hidden md:block">
+                        <p class="text-[9px] text-emerald-400 font-black uppercase tracking-[0.2em]">Control Brutal Activado</p>
+                        <p class="text-[11px] text-white font-bold">Monitor Multi-Pedidos Fase 3</p>
                     </div>
                 </div>
             </div>
@@ -1099,36 +1086,7 @@
 
         window.addEventListener('resize', resizeCanvas);
 
-        function initHeroSlider() {
-            heroSliderContainer = document.querySelector('header .hero-slider-container');
-            heroSlides = heroSliderContainer ? heroSliderContainer.querySelectorAll('.hero-slide') : document.querySelectorAll('.hero-slide');
-            currentHeroSlide = 0;
-            startSlider();
-            const heroVideo = document.getElementById('hero-video');
-            if (heroVideo) { heroVideo.muted = true; heroVideo.volume = 0; }
-
-            resizeCanvas();
-            initDust();
-            animateDust();
-        }
-
-        function startSlider() {
-            clearInterval(heroSliderInterval);
-            if (!heroSlides || heroSlides.length === 0) return;
-            heroSliderInterval = setInterval(() => { changeSlide(1); }, 4000);
-        }
-
-        function changeSlide(direction) {
-            if (!heroSlides || heroSlides.length === 0) return;
-            heroSlides[currentHeroSlide].classList.remove('active');
-            currentHeroSlide = (currentHeroSlide + direction + heroSlides.length) % heroSlides.length;
-            heroSlides[currentHeroSlide].classList.add('active');
-        }
-
-        function manualNav(direction) {
-            changeSlide(direction);
-            startSlider();
-        }
+        // Lógica de video hero (centralizado)
 
         function togglePlay(id, btn) {
             const video = document.getElementById(id);
@@ -1491,17 +1449,13 @@
         }
 
         window.onload = function () {
-            initHeroSlider();
+            resizeCanvas();
+            initDust();
+            animateDust();
             initAntigravity();
 
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
             document.querySelectorAll('video').forEach(v => videoScrollObserver.observe(v));
-
-            const dynamicVideo = document.getElementById('dynamic-avatar-video');
-            if (dynamicVideo) {
-                dynamicVideo.muted = true;
-                dynamicVideo.volume = 0;
-            }
         };
 
         function handleContact() {
