@@ -876,7 +876,7 @@
                 <div
                     class="video-container w-full max-w-5xl border-emerald-500/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] relative bg-slate-900 group">
                     <video id="hero-central-video" class="w-full h-auto block" autoplay loop muted playsinline>
-                        <source src="videos/header-video2.mp4" type="video/mp4">
+                        <source src="videos/header-video.mp4" type="video/mp4">
                     </video>
                     
                     <!-- Overlay de "Antes/Después" sugerido para el video -->
@@ -937,18 +937,20 @@
                                 <p class="text-slate-400 text-sm">Eliminamos el ping-pong telefónico. El repartidor dispara acciones directas y el sistema informa al cliente al vuelo. Soprendente velocidad de respuesta sin una sola palabra de más.</p>
                             </div>
                         </div>
-                        <div onclick="switchOrbitFeature(2, this)"
-                            class="orbit-feature-card p-6 rounded-2xl">
-                            <div>
-                                <h4 class="font-bold text-white uppercase text-sm tracking-wider mb-2">Liquidación Soberana (Triple Vía)</h4>
-                                <p class="text-slate-400 text-sm">El repartidor marca "Entregado" en la calle o al regresar. Si se olvida, lo liquidás vos desde el monitor. Si sale de la pantalla, es que el pedido se cobró y el ciclo cerró.</p>
-                            </div>
-                        </div>
+                      
                         <div onclick="switchOrbitFeature(3, this)"
                             class="orbit-feature-card p-6 rounded-2xl">
                             <div>
                                 <h4 class="font-bold text-white uppercase text-sm tracking-wider mb-2">Multi-Atención Dinámica</h4>
                                 <p class="text-slate-400 text-sm">Inimaginable antes de Órbita. Gestioná estados masivos "En Viaje" con visión de radar. Etiquetas de acción directa para contratiempos previstos (timbre roto, no atiende) al instante.</p>
+                            </div>
+                        </div>
+
+                          <div onclick="switchOrbitFeature(2, this)"
+                            class="orbit-feature-card p-6 rounded-2xl">
+                            <div>
+                                <h4 class="font-bold text-white uppercase text-sm tracking-wider mb-2">Liquidación Soberana (Triple Vía)</h4>
+                                <p class="text-slate-400 text-sm">El repartidor marca "Entregado" en la calle o al regresar. Si se olvida, lo liquidás vos desde el monitor. Si sale de la pantalla, es que el pedido se cobró y el ciclo cerró.</p>
                             </div>
                         </div>
                     </div>
@@ -1117,13 +1119,13 @@
                 tag: "Triple Validación",
                 title: "Liquidación Soberana",
                 desc: "Seguridad total: El sistema cierra el ciclo de venta sin importar quién marque el entregado. Auditoría impecable.",
-                video: "videos/v2.mp4"
+                video: "videos/v3.mp4"
             },
             3: {
                 tag: "Multi-Atención",
                 title: "Visión de Radar",
                 desc: "Gestión masiva: Un solo operador dominando 20 entregas simultáneas con etiquetas de respuesta automática.",
-                video: "videos/v3.mp4"
+                video: "videos/v2.mp4"
             }
         };
 
@@ -1460,7 +1462,7 @@
 
         function handleContact() {
             const msg = encodeURIComponent("Hola. Estoy interesado en conocer más sobre las fortalezas de RutaTotal 360 y cómo implementar el monitor de pedidos en mi local.");
-            window.open(`https://rutatotal360.netlify.app/paquetes/planes.html`, '_blank');
+            window.open(`https://orbitamanager.netlify.app/paquetes/planes.html`, '_blank');
         }
     </script>
 </body>
