@@ -308,7 +308,7 @@
                     const docRef = await addDoc(collection(this.db, "leads_inbox"), {
                         ...data,
                         timestamp: serverTimestamp(),
-                        source: 'landing_planes',
+                        source: data.source || 'landing_planes',
                         status: 'new'
                     });
                     console.log("Packet sent with ID: ", docRef.id);
@@ -317,16 +317,6 @@
                     console.error("Error sending packet:", e);
                     return { error: e.message };
                 }
-            }
-
-            async saveChatSession(sessionData) {
-                if (!this.initialized) return;
-                try {
-                    await addDoc(collection(this.db, "chat_sessions"), {
-                        ...sessionData,
-                        savedAt: serverTimestamp()
-                    });
-                } catch (e) { console.error("Chat log error:", e); }
             }
         }
 
@@ -601,10 +591,11 @@
                 };
                 const ctaText = ctaMap[this.data.specialty] || "Obtener mi Propuesta Personalizada";
 
-                // Sync with Firebase
-                fireRouter.saveChatSession({
-                    lead: this.data,
-                    history: this.history
+                // Sync with Firebase (Unificado en leads_inbox para el Pipeline)
+                fireRouter.saveLead({
+                    ...this.data,
+                    history: this.history,
+                    source: 'chatbot_planes'
                 });
 
                 document.getElementById('chat-input-area').innerHTML = `
