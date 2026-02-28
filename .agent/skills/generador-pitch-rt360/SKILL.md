@@ -17,7 +17,7 @@ Cada salida debe seguir esta estructura:
 
 1. **El Hook (Gancho) Disruptivo:** 
    - Debe golpear un punto de dolor inmediato.
-   - *Ejemplo:* "¿Tu personal todavía grita en la cocina a las 10 PM para saber quién se llevó el pedido #42? Cada grito es dinero que se te escapa entre los dedos."
+   - *Ejemplo:* "¿Tu delivery todavía te llama para saber avisar que el no sale o la altura no aparece? Cada minuto es dinero que se te escapa entre los dedos."
 2. **La Solución (Monitor de Pedidos):**
    - Presentado como una "Torre de Control".
    - Menciona el impacto inmediato: Reducción del 40% en tiempos de respuesta y liberación del 30% de la carga del equipo.

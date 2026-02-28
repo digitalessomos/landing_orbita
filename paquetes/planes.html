@@ -153,8 +153,8 @@
             </p>
 
             <!-- Contenedor Dinámico de Planes -->
-            <div id="pricing-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-                <!-- Los planes se inyectan aquí -->
+            <div id="pricing-container" class="flex justify-center mb-20">
+                <!-- El plan se inyecta aquí -->
             </div>
 
             <!-- Botón de Contacto General -->
@@ -589,7 +589,7 @@
                 this.botSay("<b>¡Análisis completado!</b> 🎯 El sistema está generando tu propuesta estratégica.");
 
                 // Recomendación de Plan
-                const planRecomendado = (this.data.volume === '1-5') ? 'Fase 01: Organización' : 'Fase 02: Conectividad';
+                const planRecomendado = 'Fase 03: Torre de Control 360';
                 this.data.plan = planRecomendado;
 
                 // Mapeo de CTAs personalizados por nicho
@@ -751,8 +751,8 @@
         function renderPlanes() {
             const container = document.getElementById('pricing-container');
             container.innerHTML = planes.map(plan => `
-                <div class="glass-card rounded-[2.5rem] p-10 flex flex-col relative ${plan.popular ? 'border-emerald-500/50 ring-1 ring-emerald-500/20 shadow-2xl shadow-emerald-500/10' : ''}">
-                    ${plan.popular ? '<span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/30">Más Recomendado</span>' : ''}
+                <div class="glass-card rounded-[2.5rem] p-10 flex flex-col relative max-w-lg ${plan.popular ? 'border-emerald-500/50 ring-1 ring-emerald-500/20 shadow-2xl shadow-emerald-500/10' : ''}">
+                    ${plan.popular ? '<span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/30">Plan 360 Órbita</span>' : ''}
                     
                     <div class="text-emerald-500 font-black text-[10px] uppercase tracking-[0.3em] mb-4">${plan.fase}</div>
                     <h3 class="text-3xl font-black text-white mb-2 italic tracking-tighter uppercase">${plan.titulo}</h3>
